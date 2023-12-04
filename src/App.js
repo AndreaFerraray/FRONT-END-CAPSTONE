@@ -11,6 +11,8 @@ import store from "./redux/store";
 import "./index.css";
 import Register from "./component/Register";
 import Login from "./component/Login";
+import "@tomtom-international/web-sdk-maps/dist/maps.css";
+
 import tt from "@tomtom-international/web-sdk-maps";
 import MapComponent from "./component/MapComponent";
 
@@ -23,7 +25,7 @@ function App() {
           <Route path="/campeggi" element={<Campeggi />} />
           <Route path="/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
-          <Route patch="/discover" element={<MapComponent />} />
+          <Route path="/discover" element={<MapComponent />} />
         </Routes>
       </BrowserRouter>
     </>
