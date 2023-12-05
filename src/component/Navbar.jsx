@@ -1,14 +1,17 @@
+import { Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-function NavBar() {
+const NavBar = () => {
+  const user = useSelector((state) => state.login.user);
   return (
-    <Navbar expand="lg" className=" NavBar">
+    <Navbar expand="lg" className=" NavBar ">
       <Container fluid>
         <Navbar.Brand href="#">CampiLife</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -18,23 +21,42 @@ function NavBar() {
             <Nav.Link href="/campeggi">Campeggi</Nav.Link>
             <Nav.Link href="/prenotazioni">Prenotazioni</Nav.Link>
             <NavDropdown title="Trova" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Per luogo</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Per recensioni</NavDropdown.Item>
+              <NavDropdown.Item href="/campeggi">Campeggi</NavDropdown.Item>
+              <NavDropdown.Item href="avventure">Avventure</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
             </NavDropdown>
           </Nav>
 
-          <Nav.Link className="mx-2" href="/login">
-            Login
-          </Nav.Link>
-          <Nav.Link className="mx-2" href="/register">
-            Registrati
-          </Nav.Link>
+          <Nav>
+            {user ? (
+              <>
+                <a href="/profile">
+                  <Image
+                    src={user.imgProfilo}
+                    alt="image profile"
+                    roundedCircle
+                    style={{ width: "40px", height: "40px", marginInline: "1rem" }}
+                  />
+                </a>
+                <NavDropdown id="basic-nav-dropdown">
+                  <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link href="/campeggi">Campeggi</Nav.Link>
+                  <NavDropdown.Divider />
+                  <Nav.Link href="/logout">Logout</Nav.Link>
+                </NavDropdown>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/register">Registrati</Nav.Link>
+                <Nav.Link href="/auth/login">Login</Nav.Link>
+              </>
+            )}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavBar;

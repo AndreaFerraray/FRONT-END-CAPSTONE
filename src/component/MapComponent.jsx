@@ -1,51 +1,72 @@
-import React, { useEffect, useRef, useState } from "react";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import { InputGroup } from "react-bootstrap";
+import React, { useState, useRef, useEffect } from "react";
 import tt from "@tomtom-international/web-sdk-maps";
-
+import "@tomtom-international/web-sdk-maps/dist/maps.css";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
+import FuzzySearch from "fuzzy-search";
 const MapComponent = () => {
   const mapElement = useRef();
-  const MAX_ZOOM = 18;
-
-  const [mapLongitude, setMapLongitude] = useState(-121.91599);
-  const [mapLatitude, setMapLatitude] = useState(37.36765);
-  const [mapZoom, setMapZoom] = useState(13);
   const [map, setMap] = useState({});
-
-  const increaseZoom = () => {
-    if (mapZoom < MAX_ZOOM) {
-      setMapZoom(mapZoom + 1);
-    }
-  };
-
-  const decreaseZoom = () => {
-    if (mapZoom > 1) {
-      setMapZoom(mapZoom - 1);
-    }
-  };
-
-  const updateMap = () => {
-    map.setCenter([parseFloat(mapLongitude), parseFloat(mapLatitude)]);
-    map.setZoom(mapZoom);
-  };
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    let map = tt.map({
-      key: "Xm0Kg03x0jAJxTCOmt1lnh4MBI23E1bp", // Utilizza la chiave API corretta
+    let mapInstance = tt.map({
+      key: "Xm0Kg03x0jAJxTCOmt1lnh4MBI23E1bp",
       container: mapElement.current,
-      center: [mapLongitude, mapLatitude],
-      zoom: mapZoom,
+      center: [0, 0],
+      zoom: 1,
     });
-    setMap(map);
+    setMap(mapInstance);
+    return () => mapInstance.remove();
+  }, []);
 
-    // Pulizia della mappa quando il componente viene smontato
-    return () => map.remove();
-  }, [mapLatitude, mapLongitude, mapZoom]);
+  const handleSearch = async () => {
+    try {
+      const response = await tt.services
+        .fuzzySearch({
+          key: "Xm0Kg03x0jAJxTCOmt1lnh4MBI23E1bp",
+          query: searchQuery,
+        })
+        .go();
+
+      setSearchResults(response.results);
+      if (response.results.length > 0) {
+        const { position } = response.results[0];
+
+        // Verifica che la mappa sia definita prima di accedere alle sue proprietà
+        if (map && map.setCenter && map.setZoom) {
+          map.setCenter(position);
+          map.setZoom(12);
+        }
+      }
+    } catch (error) {
+      console.error("Error during search:", error);
+    }
+  };
 
   return (
     <div>
-      <InputGroup type="text" name="longitude" value={mapLongitude} onChange={(e) => setMapLongitude(e.target.value)} />
-      <div ref={mapElement} className="mapDiv" style={{ width: "100%", height: "400px" }}></div>
+      <InputGroup className="mb-3">
+        <FormControl
+          placeholder="Search city..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Button variant="primary" onClick={handleSearch}>
+          Search
+        </Button>
+      </InputGroup>
+
+      <div ref={mapElement} style={{ width: "100%", height: "400px" }}></div>
+
+      <div>
+        <h4>Search Results:</h4>
+        <ul>
+          {searchResults.map((result) => (
+            <li key={result.id}>{result.address.freeformAddress}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

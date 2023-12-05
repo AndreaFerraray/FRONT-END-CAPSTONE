@@ -66,7 +66,7 @@ const Register = () => {
       <Container className="mt-5 d-flex justify-content-center">
         <Row className="d-flex flex-column">
           <Col>
-            <h2>Register USER Form</h2>
+            <h2>Registrati</h2>
           </Col>
           <Col>
             <Form onSubmit={handlerSubmit}>

@@ -15,17 +15,23 @@ import "@tomtom-international/web-sdk-maps/dist/maps.css";
 
 import tt from "@tomtom-international/web-sdk-maps";
 import MapComponent from "./component/MapComponent";
+import Auth from "./component/Auth";
+import Profilo from "./component/Profilo";
+import Logout from "./component/Logout";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/campeggi" element={<Campeggi />} />
           <Route path="/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/discover" element={<MapComponent />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/profile" element={<Profilo />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
     </>

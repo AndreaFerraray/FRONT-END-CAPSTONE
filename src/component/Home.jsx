@@ -1,18 +1,78 @@
-import { Button, ButtonGroup, Col, Container, Form, Navbar, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Card, Carousel, Col, Container, Form, Image, Navbar, Row } from "react-bootstrap";
 import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import MapComponent from "./MapComponent";
 
 const Home = () => {
-  const numberCount = useSelector((state) => state.cart.count);
+  const numberCount = useSelector((state) => state.count);
   const dispatch = useDispatch();
   return (
     <div className="Home">
       <NavBar />
+      <Form className="d-flex">
+        <Form.Control type="search" placeholder="Search" className="me-2 " aria-label="Search" />
+        <Button variant="outline-success">Search</Button>
+      </Form>
+      <Carousel className="my-5">
+        <Carousel.Item>
+          <Image text="First slide" src="https://printler.com/media/photo/111779.jpg" className="d-block w-75" />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Image text="Second slide" src="https://printler.com/media/photo/111779.jpg" className="d-block w-75" />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item className="">
+          <Image text="Third slide" src="https://printler.com/media/photo/111779.jpg" className="d-block w-" />
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+      <Row className="justify-content-centre">
+        <Col>
+          <Card style={{ width: "35rem" }}>
+            <Card.Img
+              variant="top"
+              src="https://www.vancoolers.org/it/wp-content/uploads/2022/07/vanlife-cover-1.jpg"
+            />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card style={{ width: "35rem" }}>
+            <Card.Img
+              variant="top"
+              src="https://www.vancoolers.org/it/wp-content/uploads/2022/07/vanlife-cover-1.jpg"
+            />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      {/* BOTTONE PREFERITI */}
       <Row
         className="d-flex flex-row"
         style={{
-          height: "70vh",
+          height: "40vh",
         }}
       >
         <Col>
@@ -50,16 +110,11 @@ const Home = () => {
                     </Button>
                   </ButtonGroup>
                 </div>{" "}
-                <Form className="d-flex">
-                  <Form.Control type="search" placeholder="Search" className="me-2 " aria-label="Search" />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Col>
             </Row>
           </Container>
         </Col>
       </Row>
-      <MapComponent />
     </div>
   );
 };

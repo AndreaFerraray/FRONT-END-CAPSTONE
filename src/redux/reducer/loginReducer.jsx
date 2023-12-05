@@ -4,6 +4,8 @@ const initialState = {
   token: "",
   role: "",
   user: null,
+  nome: "",
+  cognome: "",
 };
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
