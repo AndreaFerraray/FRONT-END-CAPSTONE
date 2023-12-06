@@ -1,8 +1,8 @@
-import { AccordionButton, Button, Card, Col, Container, Row, SplitButton } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { addFavorite } from "../redux/action";
+import { addFavorite, removeFavorite } from "../redux/action";
 
 const Campeggi = () => {
   const token = useSelector((state) => state.login.token);
@@ -11,10 +11,19 @@ const Campeggi = () => {
   const preferiti = useSelector((state) => state.favorite.preferiti);
   const dispatch = useDispatch();
 
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const aggiungiPreferito = (campeggio) => {
     dispatch(addFavorite(campeggio));
+    setIsButtonClicked(true);
   };
   console.log(preferiti);
+
+  const rimuoviPreferito = (campeggio) => {
+    dispatch(removeFavorite(campeggio));
+    setIsButtonClicked(false);
+  };
+  console.log(preferiti);
+
   const tuttiCampeggi = async () => {
     const risp = await fetch("http://localhost:3001/campeggi", {
       method: "GET",
@@ -51,8 +60,8 @@ const Campeggi = () => {
                     <Card.Img variant="top" src={elem.logo} className="position-relative" />
                     <Button
                       type="submit"
-                      onClick={() => aggiungiPreferito(elem)}
-                      className="position-absolute top-0 start-0  bg-secondary"
+                      onClick={() => rimuoviPreferito(elem)}
+                      className={`position-absolute top-0 start-0 ${isButtonClicked ? "bg-danger" : "bg-secondary"}`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

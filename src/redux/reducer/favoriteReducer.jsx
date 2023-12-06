@@ -1,4 +1,4 @@
-import { ADD_FAVORITE } from "../action";
+import { ADD_FAVORITE, REMOVE_FAVORITE } from "../action";
 const initialState = {
   numeroPreferiti: 0,
   preferiti: [],
@@ -11,6 +11,12 @@ const favoriteReducer = (state = initialState, action) => {
         ...state,
         preferiti: [...state.preferiti, action.payload],
         numeroPreferiti: state.numeroPreferiti + 1,
+      };
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        preferiti: [],
+        numeroPreferiti: 0,
       };
 
     default:
