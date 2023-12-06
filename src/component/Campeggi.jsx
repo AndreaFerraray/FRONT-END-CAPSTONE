@@ -12,16 +12,15 @@ const Campeggi = () => {
   const dispatch = useDispatch();
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const aggiungiPreferito = (campeggio) => {
-    dispatch(addFavorite(campeggio));
-    setIsButtonClicked(true);
+  const handleClick = (campeggio) => {
+    if (isButtonClicked) {
+      dispatch(removeFavorite(campeggio));
+    } else {
+      dispatch(addFavorite(campeggio));
+    }
+    setIsButtonClicked(!isButtonClicked);
   };
-  console.log(preferiti);
 
-  const rimuoviPreferito = (campeggio) => {
-    dispatch(removeFavorite(campeggio));
-    setIsButtonClicked(false);
-  };
   console.log(preferiti);
 
   const tuttiCampeggi = async () => {
@@ -60,7 +59,7 @@ const Campeggi = () => {
                     <Card.Img variant="top" src={elem.logo} className="position-relative" />
                     <Button
                       type="submit"
-                      onClick={() => rimuoviPreferito(elem)}
+                      onClick={() => handleClick(elem)}
                       className={`position-absolute top-0 start-0 ${isButtonClicked ? "bg-danger" : "bg-secondary"}`}
                     >
                       <svg
