@@ -2,73 +2,29 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { addFavorite, addFavoriteButton, removeFavorite, removeFavoriteButton } from "../redux/action";
+import { addFavorite, removeFavorite } from "../redux/action";
 
-const Campeggi = () => {
+const Preferiti = () => {
   const token = useSelector((state) => state.login.token);
-  const [contenuto, setContenuto] = useState();
 
-  const preferiti = useSelector((state) => state.login.user?.campeggioPreferito);
-  const isButtonClick = useSelector((state) => state.login.user.campeggioPreferito.map((item) => item.id));
-  // const [isButtonClick, setIsButtonClick] = useState({});
+  const preferiti = useSelector((state) => state.login.user?.campeggioPreferito || []);
+  const isButtonCick = useSelector((state) => state.login.isButtonClicked);
   const dispatch = useDispatch();
 
-  const [isFavoriteList, setIsFavoriteList] = useState(() => {
-    const initialFavorites = {};
-    preferiti.forEach((item) => {
-      initialFavorites[item.id] = true;
-    });
-    return initialFavorites;
-  });
-
   const handleClick = (campeggio) => {
-    const updatedFavorites = { ...isFavoriteList };
-    console.log(isFavoriteList);
-    const isFavorite = isButtonClick.includes(campeggio);
-    updatedFavorites[campeggio] = isFavorite;
-    setIsFavoriteList(updatedFavorites);
-    console.log(updatedFavorites);
-    console.log(isFavoriteList);
-    console.log(campeggio);
-    console.log(isButtonClick);
-    console.log(isFavorite);
-
-    if (isFavorite === true) {
-      dispatch(removeFavorite(campeggio, token));
-      dispatch(removeFavoriteButton());
-    } else {
-      dispatch(addFavorite(campeggio, token));
-      dispatch(addFavoriteButton());
-    }
-    updatedFavorites[campeggio] = !isFavorite;
-    // console.log(isFavorite);
+    dispatch(removeFavorite(campeggio, token));
   };
-  console.log(isFavoriteList);
+  useEffect(() => {}, []);
+  // OTTENGO I PREFERITI DELL'UTENTE
 
-  const tuttiCampeggi = async () => {
-    const risp = await fetch("http://localhost:3001/campeggi", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    if (risp.ok) {
-      const data = await risp.json();
-      setContenuto(data.content);
-      console.log(data);
-    }
-  };
-  useEffect(() => {
-    tuttiCampeggi();
-  }, []);
-
+  //++++++++++++++++++++ RENDERIZZO ++++++++++++++
   return (
     <>
       <NavBar />
       <Container>
         <Row>
-          {contenuto ? (
-            contenuto.map((elem) => {
+          {preferiti.length > 0 ? (
+            preferiti.map((elem) => {
               return (
                 <Col
                   sm={6}
@@ -82,9 +38,7 @@ const Campeggi = () => {
                     <Button
                       type="submit"
                       onClick={() => handleClick(elem.id)}
-                      className={`position-absolute top-0 start-0  ${
-                        isFavoriteList[elem.id] ? "bg-danger" : "bg-secondary"
-                      }`}
+                      className={`position-absolute top-0 start-0 ${isButtonCick ? "bg-danger" : "bg-secondary"}`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -121,11 +75,11 @@ const Campeggi = () => {
               );
             })
           ) : (
-            <p>nessun cliente</p>
+            <p>NESSUN PREFERITO AL MOMENTO</p>
           )}
         </Row>
       </Container>
     </>
   );
 };
-export default Campeggi;
+export default Preferiti;

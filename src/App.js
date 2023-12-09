@@ -18,6 +18,7 @@ import MapComponent from "./component/MapComponent";
 import Auth from "./component/Auth";
 import Profilo from "./component/Profilo";
 import Logout from "./component/Logout";
+import Preferiti from "./component/Preferiti";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<Profilo />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/preferiti" element={<Preferiti />} />
         </Routes>
       </BrowserRouter>
     </>

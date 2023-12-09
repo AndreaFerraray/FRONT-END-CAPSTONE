@@ -1,7 +1,7 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToken } from "../redux/action";
+import { addToken, addUser } from "../redux/action";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
       const token = await risposta.json();
       console.log(token.accessToken);
       dispatch(addToken(token.accessToken));
-
+      dispatch(addUser());
       navigate("/auth");
     } else {
       console.error("login non riuscito riprova con credenziali valide");
