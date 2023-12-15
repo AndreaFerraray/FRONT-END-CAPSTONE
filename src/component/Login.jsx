@@ -6,10 +6,10 @@ import { addToken, addUser } from "../redux/action";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log("Form data:", data);
     const risposta = await fetch("http://localhost:3001/auth/login", {
       method: "POST",
       headers: {
@@ -51,17 +51,6 @@ const Login = () => {
           </Form>
         </Col>
       </Row>
-      {/* <div className="d-flex justify-content-center ">
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Benvenuto</Card.Title>
-
-            <Card.Text>Organizza subito la tua prossima avventura, e condividila con la community!</Card.Text>
-            <Card.Link href="/">Home</Card.Link>
-            <Card.Link href="/discover">Discover</Card.Link>
-          </Card.Body>
-        </Card>
-      </div> */}
     </>
   );
 };

@@ -21,13 +21,13 @@ const loginReducer = (state = initialState, action) => {
     case ADD_FAVORITE:
       return {
         ...state,
-        numeroPreferiti: state.numeroPreferiti + 1,
+
         isButtonClicked: true,
       };
     case REMOVE_FAVORITE:
       return {
         ...state,
-        numeroPreferiti: state.numeroPreferiti - 1,
+
         isButtonClicked: false,
       };
     //aggiungi i vari casi di login e come salvare il token per averlo disponibile ovunque e comunque per le richiesta al backend
