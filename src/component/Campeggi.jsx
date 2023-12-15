@@ -56,7 +56,7 @@ const Campeggi = () => {
     if (risp.ok) {
       const data = await risp.json();
       setContenuto(data.content);
-      console.log(data);
+      console.log(contenuto);
     }
   };
   useEffect(() => {
