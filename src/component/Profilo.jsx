@@ -13,6 +13,7 @@ const Profilo = () => {
   const user = useSelector((state) => state.login.user);
   const token = useSelector((state) => state.login.token);
   const fileTypes = ["JPG", "PNG", "GIF", "JPEG"];
+
   const handleChange = async (file) => {
     const formImage = new FormData();
     formImage.append("avatar", file);
@@ -57,10 +58,10 @@ const Profilo = () => {
                     <Card style={{ width: "18rem" }}>
                       <Card.Img variant="top" src={user.imgProfilo} />
                       <Card.Body>
-                        <Card.Title>username: {user.username}</Card.Title>
+                        <Card.Title>{user.username}</Card.Title>
                         <Card.Text>
-                          <p>nome: {user.nome}</p>
-                          <p>cognome: {user.cognome}</p>
+                          <p>{user.nome}</p>
+                          <p>{user.cognome}</p>
                         </Card.Text>
                       </Card.Body>
                     </Card>

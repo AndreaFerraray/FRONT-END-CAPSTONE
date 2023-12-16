@@ -25,8 +25,6 @@ const NavBar = () => {
             <NavDropdown title="Trova" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/campeggi">Campeggi</NavDropdown.Item>
               <NavDropdown.Item href="avventure">Avventure</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
             </NavDropdown>
           </Nav>
 

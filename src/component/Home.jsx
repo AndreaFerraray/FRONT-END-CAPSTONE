@@ -2,17 +2,49 @@ import { Button, ButtonGroup, Card, Carousel, Col, Container, Form, Image, Navba
 import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import MapComponent from "./MapComponent";
+import { useState } from "react";
+import { addIndirizzo } from "../redux/action";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const numberCount = useSelector((state) => state.count);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.login.token);
+  const [indirizzo, setIndirizzo] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (indirizzo.trim() === "") {
+      console.error("campo di ricerca vuoto");
+    } else {
+      dispatch(addIndirizzo(indirizzo));
+      navigate("/campeggiCercati");
+    }
+  };
+
+  const handleInputChange = (event) => {
+    console.log("Indirizzo:", event.target.value);
+    setIndirizzo(event.target.value);
+  };
+
   return (
     <div className="Home">
       <NavBar />
-      <Form className="d-flex">
-        <Form.Control type="search" placeholder="Search" className="me-2 " aria-label="Search" />
-        <Button variant="outline-success">Search</Button>
+      <Form className="d-flex" onSubmit={handleSubmit}>
+        <Form.Control
+          type="search"
+          placeholder="Cerca"
+          className="me-2"
+          aria-label="Search"
+          value={indirizzo}
+          onChange={handleInputChange}
+        />
+        <Button variant="outline-success" type="submit">
+          Cerca
+        </Button>
       </Form>
+
       <Carousel className="my-5">
         <Carousel.Item>
           <Image text="First slide" src="https://printler.com/media/photo/111779.jpg" className="d-block w-75" />

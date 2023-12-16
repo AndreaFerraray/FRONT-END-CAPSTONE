@@ -67,9 +67,7 @@ const Campeggio = () => {
         <Col>
           <TabellaPrenotazione></TabellaPrenotazione>
         </Col>
-        <Row>
-          <TipoSistemazione></TipoSistemazione>
-        </Row>
+
         <Row>
           <Col>
             {" "}

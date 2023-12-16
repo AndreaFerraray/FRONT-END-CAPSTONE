@@ -1,7 +1,8 @@
-import { ADD_BOOKING, ADD_CAMPEGGIO } from "../action";
+import { ADD_ADDRESS, ADD_BOOKING, ADD_CAMPEGGIO } from "../action";
 
 const initialState = {
   campeggio: null,
+  indirizzoCercato: null,
 };
 
 const campeggioReducer = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const campeggioReducer = (state = initialState, action) => {
           ...action.payload.campeggio,
         },
       };
+    case ADD_ADDRESS:
+      return {
+        ...state,
+        indirizzoCercato: action.payload,
+      };
+
     default:
       return state;
   }

@@ -22,13 +22,14 @@ import Preferiti from "./component/Preferiti";
 
 import Prenotazioni from "./component/Prenotazioni";
 import Campeggio from "./component/Campeggio";
+import CampeggiCercati from "./component/CampeggiCercati";
 
 function App() {
   return (
     <>
       <BrowserRouter className="route">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/campeggi" element={<Campeggi />} />
           <Route path="/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
@@ -39,6 +40,7 @@ function App() {
           <Route path="/preferiti" element={<Preferiti />} />
           <Route path="/prenotazioni" element={<Prenotazioni />} />
           <Route path="/campeggio" element={<Campeggio />} />
+          <Route path="/campeggiCercati" element={<CampeggiCercati />} />
         </Routes>
       </BrowserRouter>
     </>

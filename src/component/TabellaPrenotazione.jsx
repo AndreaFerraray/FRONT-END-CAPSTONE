@@ -8,7 +8,8 @@ const TabellaPrenotazione = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
-  const campeggioId = useSelector((state) => state.campeggio.campeggio.id);
+  const campeggio = useSelector((state) => state.campeggio.campeggio);
+  const campeggioId = campeggio.id;
 
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -20,7 +21,7 @@ const TabellaPrenotazione = () => {
   };
 
   const [sistemazione, setSistemazione] = useState();
-
+  console.log(sistemazione);
   const sistemazioni = async () => {
     const risp = await fetch(`http://localhost:3001/sistemazioni/${campeggioId}`, {
       method: "GET",
