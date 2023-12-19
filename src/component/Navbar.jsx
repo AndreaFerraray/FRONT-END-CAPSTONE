@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -9,9 +10,12 @@ import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
-  const numeroPreferiti = useSelector((state) => state.login.user.campeggioPreferito.length || 0);
-  const numeroPrenotazioni = useSelector((state) => state.login.user.prenotazioni.length || 0);
+  const numeroPreferiti = useSelector((state) =>
+    state.login.user ? state.login.user.campeggioPreferito.length || 0 : 0
+  );
+  const numeroPrenotazioni = useSelector((state) => (state.login.user ? state.login.user.prenotazioni.length || 0 : 0));
   const user = useSelector((state) => state.login.user);
+
   return (
     <Navbar expand="lg" className=" NavBar ">
       <Container fluid>

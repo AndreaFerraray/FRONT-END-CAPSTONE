@@ -28,3 +28,50 @@
 .buttonCampeggio:hover {
   transform: scale(1.1);
 }
+
+.buttonDelete {
+  background-color: rgb(161, 173, 152);
+  font-size: x-small;
+  border: none;
+  position: absolute;
+  left: 80%;
+  top: 5%;
+}
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.lightbox-content img {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+}
+
+#fotoPost {
+  width: 200px;
+  height: 300px;
+}
+.buttonCondividi {
+  background-color: rgb(161, 173, 152);
+  font-size: small;
+  border: none;
+}
+
+.buttonCambiaImgProfilo {
+  background-color: rgb(161, 173, 152);
+  border: none;
+}
