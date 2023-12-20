@@ -69,9 +69,16 @@
   background-color: rgb(161, 173, 152);
   font-size: small;
   border: none;
+  margin-bottom: 5px;
 }
 
 .buttonCambiaImgProfilo {
   background-color: rgb(161, 173, 152);
   border: none;
+}
+.cardCampInfo {
+  text-align: center;
+  min-width: 100px;
+  max-width: 180px;
+  padding: 15px;
 }

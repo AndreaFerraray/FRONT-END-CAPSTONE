@@ -31,10 +31,10 @@ const Home = () => {
   return (
     <div className="Home">
       <NavBar />
-      <Form className="d-flex" onSubmit={handleSubmit}>
+      <Form className="d-flex w-50 mx-auto my-5" onSubmit={handleSubmit}>
         <Form.Control
           type="search"
-          placeholder="Cerca"
+          placeholder="Dove vorresti andare?"
           className="me-2"
           aria-label="Search"
           value={indirizzo}
