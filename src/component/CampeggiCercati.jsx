@@ -128,7 +128,7 @@ const CampeggiCercati = () => {
               );
             })
           ) : (
-            <p>nessun cliente</p>
+            <p>NESSUN CAMPEGGIO CORRISPONDE ALLA TUA RICERCA</p>
           )}
         </Row>
       </Container>

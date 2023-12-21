@@ -1,6 +1,7 @@
 .route {
   background: radial-gradient(circle, rgb(240, 183, 54) 0%, rgb(170, 130, 36) 100%);
   color: white;
+  overflow-x: hidden;
 }
 .registerButton {
   background-color: rgb(10, 31, 56);
@@ -11,7 +12,7 @@
 }
 
 .NavBar {
-  background: rgb(123, 137, 98);
+  background: rgb(218, 223, 209);
 }
 /* REGOLAZIONI BOTTONE CAMPEGGI */
 .buttonCampeggio {
@@ -27,6 +28,7 @@
 
 .buttonCampeggio:hover {
   transform: scale(1.1);
+  background-color: rgb(161, 173, 152);
 }
 
 .buttonDelete {
@@ -81,4 +83,64 @@
   min-width: 100px;
   max-width: 180px;
   padding: 15px;
+}
+
+.Home {
+  overflow: hidden;
+}
+
+.formLogin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.emaiLogin {
+  flex: 1 0 130 px;
+}
+.passwordLogin {
+  flex: 1 0 130 px;
+}
+.buttonLogin {
+  flex: 1 0 100 px;
+  background-color: rgb(161, 173, 152);
+  border: none;
+}
+.containerForm {
+  min-width: 600px;
+  min-height: 600px;
+}
+.NavBar.fixed-top + .main-content {
+  margin-bottom: 60px;
+}
+
+.main-content {
+  transition: margin-top 0.3s ease;
+}
+.NavBar {
+  transition: background-color 0.3s ease;
+}
+
+.NavBar.navbar-hidden {
+  background-color: transparent !important;
+}
+
+.favoriteButton {
+  background-color: rgb(161, 173, 152);
+  border: none;
+}
+.favoriteButtonTrue {
+  background-color: rgb(203, 139, 71);
+  border: none;
+}
+.favoriteButton:hover {
+  background-color: rgb(203, 139, 71);
+}
+
+.buttonCerca {
+  color: rgb(96, 103, 90);
+  border-color: rgb(96, 103, 90);
+}
+
+.cardHome {
+  min-width: 300px;
 }

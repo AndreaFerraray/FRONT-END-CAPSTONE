@@ -1,7 +1,8 @@
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToken, addUser } from "../redux/action";
+import NavBar from "./Navbar";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,23 +35,34 @@ const Login = () => {
 
   return (
     <>
-      <Row className="w-50 justify-content-centre">
-        <Col>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" id="email" placeholder="Enter email" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control name="password" id="password" type="password" placeholder="Password" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
+      <NavBar></NavBar>
+      <Container className=" my-5 align-items-center">
+        <Row className="containerForm align-items-center ">
+          <Form onSubmit={handleSubmit} className="formLogin justify-content-center mx-auto">
+            <Col xs={8} md={6}>
+              <Form.Group>
+                <Form.Control type="email" name="email" id="email" placeholder="Enter email" className="emaiLogin" />
+              </Form.Group>
+            </Col>
+            <Col xs={8} md={6}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  name="password"
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  className="passwordLogin"
+                />{" "}
+              </Form.Group>
+            </Col>
+            <Col xs={8} md={6}>
+              <Button variant="primary" type="submit" className="buttonLogin">
+                Login
+              </Button>
+            </Col>
           </Form>
-        </Col>
-      </Row>
+        </Row>
+      </Container>
     </>
   );
 };

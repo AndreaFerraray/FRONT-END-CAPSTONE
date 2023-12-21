@@ -95,27 +95,37 @@ const TabellaPrenotazione = () => {
   return (
     <Row>
       <Form onSubmit={handleSubmit}>
-        <Card className="w-50 my-4">
-          <Form.Group>
-            <Form.Label>Data di check-in:</Form.Label>
-            <Form.Control type="date" name="data_check_in" id="data_check_in" />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Data di check-out:</Form.Label>
-            <Form.Control type="date" name="data_check_out" id="data_check_out" />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Numero di ospiti:</Form.Label>
-            <Form.Control type="number" min="0" max="4" name="ospiti" id="ospiti" />
-          </Form.Group>
-          <FormGroup>
-            <Form.Check type="switch" id="cani" label="cani" onChange={handleSwitchChange} checked={cani} />
-          </FormGroup>
-          <Button variant="primary" type="submit" className="w-25 buttonCambiaImgProfilo">
-            Prenota
-          </Button>
+        <Card className=" my-4  w-50">
+          <Row className="align-items-center py-2 px-4 justify-content-between">
+            <Col sm={6} md={6} lg={4}>
+              <Form.Group>
+                <Form.Label>Data di check-in:</Form.Label>
+                <Form.Control type="date" name="data_check_in" id="data_check_in" />
+              </Form.Group>
+            </Col>
+            <Col sm={6} md={6} lg={4}>
+              <Form.Group>
+                <Form.Label>Data di check-out:</Form.Label>
+                <Form.Control type="date" name="data_check_out" id="data_check_out" />
+              </Form.Group>
+            </Col>
+            <Col sm={6} md={6} lg={4}>
+              <Form.Group>
+                <Form.Label> ospiti:</Form.Label>
+                <Form.Control type="number" min="0" max="4" name="ospiti" id="ospiti" />
+              </Form.Group>
+            </Col>
+            <Col sm={6} md={6} lg={4}>
+              <FormGroup>
+                <Form.Check type="switch" id="cani" label="cani" onChange={handleSwitchChange} checked={cani} />
+              </FormGroup>
+            </Col>
+            <Col sm={6} md={6} lg={4}>
+              <Button variant="primary" type="submit" className=" buttonCambiaImgProfilo">
+                Prenota
+              </Button>
+            </Col>
+          </Row>
         </Card>
         <>
           {sistemazione ? (

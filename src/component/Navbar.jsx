@@ -1,24 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../redux/action";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const numeroPreferiti = useSelector((state) =>
     state.login.user ? state.login.user.campeggioPreferito.length || 0 : 0
   );
   const numeroPrenotazioni = useSelector((state) => (state.login.user ? state.login.user.prenotazioni.length || 0 : 0));
   const user = useSelector((state) => state.login.user);
 
+  const [isNavbarVisible, setNavbarVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      setNavbarVisible(scrollTop <= 0);
+    };
+
+    // Aggiungi l'event listener per lo scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Pulisci l'event listener quando il componente si smonta
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
-    <Navbar expand="lg" className="NavBar">
-      <Container fluid>
-        <Navbar.Brand href="#">CampiLife</Navbar.Brand>
+    <Container fluid className={`main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"}`}>
+      <Navbar
+        expand="lg"
+        className={`p-3 NavBar fixed-top main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"}`}
+      >
+        <Navbar.Brand href="#">CampOk</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
@@ -78,7 +105,9 @@ const NavBar = () => {
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/campeggi">Campeggi</Nav.Link>
                   <NavDropdown.Divider />
-                  <Nav.Link href="/auth/login">Logout</Nav.Link>
+                  <Nav.Link href="/auth/login" onClick={handleLogout}>
+                    Logout
+                  </Nav.Link>
                 </NavDropdown>
               </>
             ) : (
@@ -89,8 +118,8 @@ const NavBar = () => {
             )}
           </Nav>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import { ADD_FAVORITE, ADD_ROLE, ADD_TOKEN, ADD_USER, REMOVE_FAVORITE } from "../action";
+import { ADD_FAVORITE, ADD_ROLE, ADD_TOKEN, ADD_USER, LOGOUT_USER, REMOVE_FAVORITE } from "../action";
 
 const initialState = {
   token: "",
@@ -11,6 +11,11 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.payload,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: null,
       };
 
     case ADD_USER:

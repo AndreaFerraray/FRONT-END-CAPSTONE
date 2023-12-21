@@ -6,6 +6,7 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const ADD_CAMPEGGIO = "ADD_CAMPEGGIO";
 export const ADD_BOOKING = "ADD_BOOKING";
 export const ADD_ADDRESS = "ADD_ADDRESS";
+export const LOGOUT_USER = "LOGOUT_USER";
 
 export const addToken = (token) => ({ type: ADD_TOKEN, payload: token });
 export const addRole = (role) => ({ type: ADD_ROLE, payload: role });
@@ -71,5 +72,11 @@ export const getCampeggio = (campeggioId, token) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: "LOGOUT_USER",
   };
 };
