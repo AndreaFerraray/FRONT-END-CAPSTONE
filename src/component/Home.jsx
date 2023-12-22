@@ -9,6 +9,7 @@ import {
   Col,
   Container,
   Form,
+  FormCheck,
   Image,
   Navbar,
   Row,
@@ -17,7 +18,7 @@ import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import MapComponent from "./MapComponent";
 import { useEffect, useState } from "react";
-import { addIndirizzo } from "../redux/action";
+import { addFilter, addIndirizzo, removeIndirizzo } from "../redux/action";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -28,8 +29,9 @@ const Home = () => {
   const token = useSelector((state) => state.login.token);
   const [indirizzo, setIndirizzo] = useState("");
   const [post, setPost] = useState("");
-  console.log(post);
-
+  const [open, setOpen] = useState(false);
+  const campeggio = useSelector((state) => state.campeggio);
+  console.log(indirizzo);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (indirizzo.trim() === "") {
@@ -40,8 +42,29 @@ const Home = () => {
     }
   };
 
+  const [filterOptions, setFilterOptions] = useState({
+    piscina: false,
+    wifi: false,
+    animaliAmmessi: false,
+    market: false,
+    animazione: false,
+    ristorante: false,
+  });
+  console.log(filterOptions);
+
+  const handleCheckboxChange = (option) => {
+    setFilterOptions((prevOptions) => ({
+      ...prevOptions,
+      [option]: !prevOptions[option],
+    }));
+  };
+
+  const handleSearch = () => {
+    dispatch(addFilter(filterOptions));
+    navigate("/campeggiCercati");
+  };
+
   const handleInputChange = (event) => {
-    console.log("Indirizzo:", event.target.value);
     setIndirizzo(event.target.value);
   };
 
@@ -58,8 +81,13 @@ const Home = () => {
       setPost(post);
     }
   };
+
   useEffect(() => {
     getPost();
+  }, []);
+
+  useEffect(() => {
+    dispatch(removeIndirizzo(""));
   }, []);
   return (
     <div className="Home mt-5">
@@ -79,32 +107,69 @@ const Home = () => {
           </Button>
         </Form>
         <Row className="justify-content-between">
-          <Col xs={4} sm={3} md={4}>
-            <div>
-              <input type="text" placeholder="Cerca per luogo..." />
+          <Col xs={4} sm={3} md={3}>
+            <Row className="justify-content-column align-items-center ">
+              <Form>
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="animazione"
+                      checked={filterOptions.animazione}
+                      onChange={() => handleCheckboxChange("animazione")}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="Market"
+                      checked={filterOptions.market}
+                      onChange={() => handleCheckboxChange("market")}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="Piscina"
+                      checked={filterOptions.piscina}
+                      onChange={() => handleCheckboxChange("piscina")}
+                    />
+                  </Form.Group>
 
-              <div>
-                <label>
-                  <input type="checkbox" />
-                  Piscina
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  Wifi
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  Pet Friendly
-                </label>
-              </div>
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="Wifi"
+                      checked={filterOptions.wifi}
+                      onChange={() => handleCheckboxChange("wifi")}
+                    />
+                  </Form.Group>
 
-              <table>
-                <tbody></tbody>
-              </table>
-            </div>
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="Animali"
+                      checked={filterOptions.animaliAmmessi}
+                      onChange={() => handleCheckboxChange("animaliAmmessi")}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      label="Ristorante"
+                      checked={filterOptions.ristorante}
+                      onChange={() => handleCheckboxChange("ristorante")}
+                    />
+                  </Form.Group>
+                </Row>
+
+                <Button variant="primary" onClick={handleSearch}>
+                  Cerca
+                </Button>
+              </Form>
+            </Row>
           </Col>
           <Col xs={10} sm={10} md={8} lg={8}>
-            {" "}
             <Row className="cardHome justify-content-center mx-2">
               {post ? (
                 post.content.map((post) => {
@@ -137,7 +202,12 @@ const Home = () => {
                               </Col>
                             </Row>
 
-                            <Card.Text className="mt-1">{post.testo}</Card.Text>
+                            <Card.Text
+                              className="mt-1"
+                              style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                            >
+                              {post.testo}
+                            </Card.Text>
                             <Row>
                               <Card.Img
                                 src={post.foto}

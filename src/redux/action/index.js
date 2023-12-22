@@ -6,7 +6,9 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const ADD_CAMPEGGIO = "ADD_CAMPEGGIO";
 export const ADD_BOOKING = "ADD_BOOKING";
 export const ADD_ADDRESS = "ADD_ADDRESS";
+export const REMOVE_ADDRESS = "REMOVE_ADDRESS";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const ADD_FILTER = "ADD_FILTER";
 
 export const addToken = (token) => ({ type: ADD_TOKEN, payload: token });
 export const addRole = (role) => ({ type: ADD_ROLE, payload: role });
@@ -16,7 +18,8 @@ export const removeFavoriteButton = () => ({ type: REMOVE_FAVORITE });
 export const addCampeggio = (campeggio) => ({ type: ADD_CAMPEGGIO, payload: campeggio });
 export const addBooking = (campeggio) => ({ type: ADD_BOOKING, payload: campeggio });
 export const addIndirizzo = (indirizzo) => ({ type: ADD_ADDRESS, payload: indirizzo });
-
+export const removeIndirizzo = () => ({ type: REMOVE_ADDRESS });
+export const addFilter = (filterOptions) => ({ type: ADD_FILTER, payload: filterOptions });
 export const addFavorite = (campeggioId, token) => {
   return async (dispatch) => {
     try {

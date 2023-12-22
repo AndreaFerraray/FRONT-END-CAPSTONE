@@ -45,7 +45,7 @@ const NavBar = () => {
         expand="lg"
         className={`p-3 NavBar fixed-top main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"}`}
       >
-        <Navbar.Brand href="#">CampOk</Navbar.Brand>
+        <Navbar.Brand href="/home">CampOk</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
@@ -60,8 +60,8 @@ const NavBar = () => {
                 <Row>
                   <Col>
                     <Link to="/preferiti">
-                      <Button type="button" className="position-relative bg-secondary">
-                        <i className="position-absolute top-0 start-0 bg-danger ">{numeroPreferiti}</i>
+                      <Button type="button" className="position-relative bg-secondary buttonNavbar">
+                        <i className="position-absolute top-0 start-0 bg-danger numberNavbar ">{numeroPreferiti}</i>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -77,8 +77,8 @@ const NavBar = () => {
                   </Col>
                   <Col>
                     <Link to="/prenotazioni">
-                      <Button type="button" className="position-relative bg-secondary">
-                        <i className="position-absolute top-0 start-0 bg-danger ">{numeroPrenotazioni}</i>
+                      <Button type="button" className="position-relative bg-secondary buttonNavbar">
+                        <i className="position-absolute top-0 start-0 bg-danger numberNavbar">{numeroPrenotazioni}</i>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -101,7 +101,7 @@ const NavBar = () => {
                     style={{ width: "40px", height: "40px", marginInline: "1rem" }}
                   />
                 </a>
-                <NavDropdown id="basic-nav-dropdown">
+                <NavDropdown id="dropdown-button-drop-start" drop="start" variant="secondary">
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/campeggi">Campeggi</Nav.Link>
                   <NavDropdown.Divider />

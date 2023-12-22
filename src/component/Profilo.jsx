@@ -116,7 +116,7 @@ const Profilo = () => {
   };
 
   return (
-    <div className="UserPage">
+    <div className="mt-5">
       <NavBar />
       <Container>
         <Row

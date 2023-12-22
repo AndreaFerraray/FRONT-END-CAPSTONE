@@ -144,3 +144,19 @@
 .cardHome {
   min-width: 300px;
 }
+.buttonNavbar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+}
+.numberNavbar {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+}
+
+.buttonAltro {
+  background-color: transparent;
+  border: none;
+}
