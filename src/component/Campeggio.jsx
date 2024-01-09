@@ -99,9 +99,9 @@ const Campeggio = () => {
             {campeggio.numeroTelefono}
           </Col>
         </Row>
-        <Row>
+        <Row className="justify-content-center">
           {campeggio.foto && campeggio.foto.length > 0 ? (
-            <Carousel className="my-5">
+            <Carousel className="my-5 w-75">
               {campeggio.foto.map((fotoObj, index) => (
                 <Carousel.Item className="justify-content-center" key={index}>
                   <Image
@@ -110,8 +110,7 @@ const Campeggio = () => {
                         ? fotoObj.foto
                         : "data:image/png;base64,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"
                     }
-                    className="d-block w-100"
-                    style={{ maxWidth: "600px", height: "400px", margin: "auto" }}
+                    className="d-block w-100 fotoCarosello"
                     alt={`Slide ${index + 1}`}
                   />
                 </Carousel.Item>

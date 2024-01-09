@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "../redux/action";
+import HomeImage from "../logo22.png";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,9 @@ const NavBar = () => {
         expand="lg"
         className={`p-3 NavBar fixed-top main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"},`}
       >
-        <Navbar.Brand href="/home">CampOk</Navbar.Brand>
+        <a href="/home">
+          <Image src={HomeImage} alt="home" roundedCircle style={{ width: "60px", height: "60px" }} className="" />
+        </a>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
