@@ -39,7 +39,7 @@ const Prenotazioni = () => {
           {prenotazioni ? (
             prenotazioni.map((prenotazione) => {
               return (
-                <Col sm={6} md={6} lg={4} key={prenotazione.id}>
+                <Col sm={6} md={6} lg={3} key={prenotazione.id}>
                   <Card className="cardCampPrefer mt-3">
                     <CardBody>
                       <Button
@@ -47,7 +47,7 @@ const Prenotazioni = () => {
                         type="submit"
                         onClick={() => clickCampeggio(prenotazione.campeggio.id)}
                       >
-                        <CardImg src={prenotazione.campeggio.foto[0].foto}></CardImg>
+                        <CardImg src={prenotazione.campeggio.foto[0].foto} className="prenotazioneFoto"></CardImg>
                       </Button>
                       <Card.Text className="mt-2">
                         <h5> {prenotazione.campeggio.nome}</h5>

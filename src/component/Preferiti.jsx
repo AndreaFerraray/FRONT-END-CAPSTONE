@@ -36,7 +36,7 @@ const Preferiti = () => {
                     >
                       {" "}
                       <Card.Img
-                        className="w-100"
+                        className="fotoCampeggioPreferiti w-100"
                         variant="top"
                         src={
                           elem.foto.length > 0

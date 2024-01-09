@@ -130,10 +130,10 @@ const Profilo = () => {
                       <Card style={{ width: "18rem" }}>
                         <Card.Img variant="top" src={user.imgProfilo} />
                         <Card.Body>
-                          <Card.Title>{user.username}</Card.Title>
                           <Card.Text>
-                            <p>{user.nome}</p>
-                            <p>{user.cognome}</p>
+                            <h5>
+                              {user.nome} {user.cognome}
+                            </h5>
                           </Card.Text>
                         </Card.Body>
                         <Dropdown
