@@ -98,8 +98,8 @@ const Home = () => {
   return (
     <div className="Home mt-5 containerHome">
       <NavBar />
-      <Container className=" ">
-        <Form className="d-flex w-50 mx-auto my-5" onSubmit={handleSubmit}>
+      <Container className="w-100">
+        <Form className="d-flex w-75 mx-auto my-5" onSubmit={handleSubmit}>
           <Form.Control
             type="search"
             placeholder="Dove vorresti andare?"

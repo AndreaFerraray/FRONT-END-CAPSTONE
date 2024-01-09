@@ -95,7 +95,7 @@ const TabellaPrenotazione = () => {
   return (
     <Row>
       <Form onSubmit={handleSubmit}>
-        <Card className=" my-4  w-50">
+        <Card className=" my-4  ">
           <Row className="align-items-center py-2 px-4 justify-content-between">
             <Col sm={6} md={6} lg={4}>
               <Form.Group>
@@ -121,7 +121,7 @@ const TabellaPrenotazione = () => {
               </FormGroup>
             </Col>
             <Col sm={6} md={6} lg={4}>
-              <Button variant="primary" type="submit" className=" buttonCambiaImgProfilo">
+              <Button variant="primary" type="submit" className=" mt-2 buttonCambiaImgProfilo">
                 Prenota
               </Button>
             </Col>
@@ -133,7 +133,7 @@ const TabellaPrenotazione = () => {
               <thead>
                 <tr>
                   <th>Sistemazione</th>
-                  <th>Persone ammesse</th>
+                  <th className="elementiTab">Persone ammesse</th>
                   <th>Prezzo/notte</th>
                   <th>Seleziona</th>
                 </tr>
@@ -236,7 +236,7 @@ const TabellaPrenotazione = () => {
                       )}
                     </td>
 
-                    <td>
+                    <td className="elementiTab">
                       <Row className="align-items-centre ">
                         <Col>
                           {elem.personeAmmesse}
@@ -258,7 +258,6 @@ const TabellaPrenotazione = () => {
                       <Form.Check
                         type="switch"
                         id={`switch-${elem.id}`}
-                        label="seleziona"
                         onChange={() => handleSwitchChangeSelected(elem.id)}
                         checked={selezionate.includes(elem.id)}
                       />
