@@ -18,19 +18,17 @@ const Preferiti = () => {
     console.log(campeggioId);
     navigate("/campeggio");
   };
-  // OTTENGO I PREFERITI DELL'UTENTE
 
-  //++++++++++++++++++++ RENDERIZZO ++++++++++++++
   return (
-    <div className="Home mt-5">
+    <div className="Home mt-5 containerHome ">
       <NavBar />
       <Container className="mt-5">
         <Row>
           {preferiti.length > 0 ? (
             preferiti.map((elem) => {
               return (
-                <Col sm={6} md={6} lg={4} className="mt-4">
-                  <Card>
+                <Col sm={6} md={6} lg={4} className="mt-4 ">
+                  <Card className="cardCampPrefer">
                     <Button
                       className="position-relative buttonCampeggio"
                       type="submit"

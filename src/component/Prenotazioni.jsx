@@ -32,7 +32,7 @@ const Prenotazioni = () => {
   };
 
   return (
-    <div className="Home mt-5">
+    <div className="Home mt-5 containerHome">
       <NavBar />
       <Container className="mx-auto mt-5 justify-content-center">
         <Row>
@@ -40,7 +40,7 @@ const Prenotazioni = () => {
             prenotazioni.map((prenotazione) => {
               return (
                 <Col sm={6} md={6} lg={4} key={prenotazione.id}>
-                  <Card>
+                  <Card className="cardCampPrefer">
                     <CardBody>
                       <Button
                         className="position-relative buttonCampeggio "

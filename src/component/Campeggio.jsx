@@ -48,9 +48,9 @@ const Campeggio = () => {
   };
 
   return (
-    <div className="Home mt-5">
+    <div className="Home mt-5 containerHome">
       <NavBar />
-      <Row className="mx-auto mt-5 justify-content-center">
+      <Row className="mx-auto mt-5 mb-5 justify-content-center">
         <Row className=" w-75 mt-3 mx-auto ">
           <h2>{campeggio.nome}</h2>
           <Col sm={6} md={6} lg={4}>

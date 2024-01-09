@@ -162,7 +162,11 @@
 }
 .footer {
   background-color: rgb(161, 173, 152);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
+
 .formCheck {
   background-color: rgb(218, 223, 209);
   border-radius: 10px;
@@ -188,6 +192,10 @@
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+.cardCampPrefer {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 .contFoto {
   justify-content: center;
@@ -197,6 +205,8 @@
 .containerHome {
   background-color: rgb(250, 248, 242);
   padding: 30px;
+  height: 100vh;
+  overflow: auto;
 }
 #fotoPost {
   height: 200px;
