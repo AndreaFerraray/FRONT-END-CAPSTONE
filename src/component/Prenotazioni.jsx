@@ -40,7 +40,7 @@ const Prenotazioni = () => {
             prenotazioni.map((prenotazione) => {
               return (
                 <Col sm={6} md={6} lg={4} key={prenotazione.id}>
-                  <Card className="cardCampPrefer">
+                  <Card className="cardCampPrefer mt-3">
                     <CardBody>
                       <Button
                         className="position-relative buttonCampeggio "

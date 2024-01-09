@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "../redux/action";
 
 const NavBar = () => {
@@ -43,13 +43,16 @@ const NavBar = () => {
     <Container fluid className={`main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"}`}>
       <Navbar
         expand="lg"
-        className={`p-3 NavBar fixed-top main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"}`}
+        className={`p-3 NavBar fixed-top main-content ${isNavbarVisible ? "navbar-visible" : "navbar-hidden"},`}
       >
         <Navbar.Brand href="/home">CampOk</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link className=" d-none d-lg-block" href="/home">
+              Home
+            </Nav.Link>
+
             <Nav.Link href="/campeggi">Campeggi</Nav.Link>
             <Nav.Link href="/prenotazioni">Prenotazioni</Nav.Link>
           </Nav>
@@ -75,7 +78,7 @@ const NavBar = () => {
                       </Button>
                     </Link>
                   </Col>
-                  <Col>
+                  <Col className="d-none d-lg-block">
                     <Link to="/prenotazioni">
                       <Button type="button" className="position-relative bg-secondary buttonNavbar">
                         <i className="position-absolute top-0 start-0 bg-danger numberNavbar">{numeroPrenotazioni}</i>
@@ -98,10 +101,19 @@ const NavBar = () => {
                     src={user.imgProfilo}
                     alt="image profile"
                     roundedCircle
-                    style={{ width: "40px", height: "40px", marginInline: "1rem" }}
+                    style={{ width: "40px", height: "40px" }}
+                    className="iconaProfilo"
                   />
                 </a>
-                <NavDropdown id="dropdown-button-drop-start" drop="start" variant="secondary">
+                <Nav.Link href="/auth/login" onClick={handleLogout} className="d-lg-none">
+                  Logout
+                </Nav.Link>
+                <NavDropdown
+                  id="dropdown-button-drop-start"
+                  drop="start"
+                  variant="secondary"
+                  className="d-none d-lg-block"
+                >
                   <Nav.Link href="/profile">Profilo</Nav.Link>
                   <Nav.Link href="/campeggi">Campeggi</Nav.Link>
                   <NavDropdown.Divider />

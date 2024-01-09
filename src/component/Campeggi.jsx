@@ -63,7 +63,7 @@ const Campeggi = () => {
   }, []);
 
   return (
-    <div className="Home mt-5">
+    <div className="Home mt-5 containerHome">
       <NavBar />
       <Container className="mt-5">
         <Row className="mx-auto">

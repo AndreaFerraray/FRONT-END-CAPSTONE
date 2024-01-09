@@ -171,7 +171,6 @@
   background-color: rgb(218, 223, 209);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-inline: auto;
 }
 .formCheckHome {
   margin-block: 10px;
@@ -195,6 +194,7 @@
 .cardCampPrefer {
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(242, 244, 239);
 }
 
 .contFoto {
@@ -211,4 +211,12 @@
 #fotoPost {
   height: 200px;
   object-fit: cover;
+}
+.iconaProfilo {
+  @media (min-width: 992px) {
+    margin-inline: 1rem;
+  }
+  @media (max-width: 991px) {
+    margin-top: 20px;
+  }
 }

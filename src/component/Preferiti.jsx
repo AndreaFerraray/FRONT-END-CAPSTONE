@@ -27,7 +27,7 @@ const Preferiti = () => {
           {preferiti.length > 0 ? (
             preferiti.map((elem) => {
               return (
-                <Col sm={6} md={6} lg={4} className="mt-4 ">
+                <Col sm={6} md={6} lg={4} className="mt-4  ">
                   <Card className="cardCampPrefer">
                     <Button
                       className="position-relative buttonCampeggio"
