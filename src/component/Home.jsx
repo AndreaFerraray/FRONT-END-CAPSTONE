@@ -63,10 +63,6 @@ const Home = () => {
     dispatch(addFilter(filterOptions));
   }, [filterOptions]);
 
-  const handleSearch = () => {
-    navigate("/campeggiCercati");
-  };
-
   const handleInputChange = (event) => {
     setIndirizzo(event.target.value);
   };
@@ -93,9 +89,9 @@ const Home = () => {
     dispatch(removeIndirizzo(""));
   }, []);
   return (
-    <div className="Home mt-5">
+    <div className="Home mt-5 containerHome">
       <NavBar />
-      <Container>
+      <Container className="">
         <Form className="d-flex w-50 mx-auto my-5" onSubmit={handleSubmit}>
           <Form.Control
             type="search"
@@ -109,64 +105,70 @@ const Home = () => {
             Cerca
           </Button>
         </Form>
-        <Row className="justify-content-between">
-          <Col xs={4} sm={3} md={3}>
+        <Row className="justify-content-md-between justify-content-center">
+          <Col xs={8} sm={7} md={3}>
             <Row className="justify-content-column align-items-center ">
-              <Form>
-                <Row className="mb-3">
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="animazione"
-                      checked={filterOptions.animazione}
-                      onChange={() => handleCheckboxChange("animazione")}
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="Market"
-                      checked={filterOptions.market}
-                      onChange={() => handleCheckboxChange("market")}
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="Piscina"
-                      checked={filterOptions.piscina}
-                      onChange={() => handleCheckboxChange("piscina")}
-                    />
-                  </Form.Group>
+              <Form className="formCheck">
+                <Form.Group>
+                  <Form.Check
+                    className="formCheckHome"
+                    type="checkbox"
+                    label="Animazione"
+                    checked={filterOptions.animazione}
+                    onChange={() => handleCheckboxChange("animazione")}
+                  />
+                </Form.Group>
 
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="Wifi"
-                      checked={filterOptions.wifi}
-                      onChange={() => handleCheckboxChange("wifi")}
-                    />
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    className="formCheckHome"
+                    type="checkbox"
+                    label="Market"
+                    checked={filterOptions.market}
+                    onChange={() => handleCheckboxChange("market")}
+                  />
+                </Form.Group>
 
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="Animali"
-                      checked={filterOptions.animaliAmmessi}
-                      onChange={() => handleCheckboxChange("animaliAmmessi")}
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Check
-                      type="checkbox"
-                      label="Ristorante"
-                      checked={filterOptions.ristorante}
-                      onChange={() => handleCheckboxChange("ristorante")}
-                    />
-                  </Form.Group>
-                </Row>
+                <Form.Group>
+                  <Form.Check
+                    className="formCheckHome"
+                    type="checkbox"
+                    label="Piscina"
+                    checked={filterOptions.piscina}
+                    onChange={() => handleCheckboxChange("piscina")}
+                  />
+                </Form.Group>
 
-                <Button variant="primary" onClick={handleSearch}>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Wifi"
+                    checked={filterOptions.wifi}
+                    onChange={() => handleCheckboxChange("wifi")}
+                  />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Check
+                    className="formCheckHome"
+                    type="checkbox"
+                    label="Animali ammessi"
+                    checked={filterOptions.animaliAmmessi}
+                    onChange={() => handleCheckboxChange("animaliAmmessi")}
+                  />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Check
+                    className="formCheckHome"
+                    type="checkbox"
+                    label="Ristorante"
+                    checked={filterOptions.ristorante}
+                    onChange={() => handleCheckboxChange("ristorante")}
+                  />
+                </Form.Group>
+
+                <Button className="buttonFilter" variant="primary" onClick={handleSubmit}>
                   Cerca
                 </Button>
               </Form>
@@ -178,7 +180,7 @@ const Home = () => {
                 post.content.map((post) => {
                   return (
                     <Col key={post.id} className="my-4 " xs={12} sm={10} md={10} lg={6}>
-                      <Card>
+                      <Card className="cardPost ">
                         {" "}
                         <Col md={12}>
                           {" "}
@@ -211,13 +213,8 @@ const Home = () => {
                             >
                               {post.testo}
                             </Card.Text>
-                            <Row>
-                              <Card.Img
-                                src={post.foto}
-                                className="w-100 mx-auto clickable  "
-                                id="fotoPost"
-                                alt="Post"
-                              />
+                            <Row className="contFoto justify-content-center">
+                              <Card.Img src={post.foto} className=" " id="fotoPost" alt="Post" />
                             </Row>
                             <CardText className="mt-1">{post.dataPubblicazione}</CardText>
                           </CardBody>{" "}

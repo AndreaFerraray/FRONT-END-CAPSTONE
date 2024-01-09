@@ -102,7 +102,7 @@ const NavBar = () => {
                   />
                 </a>
                 <NavDropdown id="dropdown-button-drop-start" drop="start" variant="secondary">
-                  <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link href="/profile">Profilo</Nav.Link>
                   <Nav.Link href="/campeggi">Campeggi</Nav.Link>
                   <NavDropdown.Divider />
                   <Nav.Link href="/auth/login" onClick={handleLogout}>

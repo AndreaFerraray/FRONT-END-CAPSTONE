@@ -112,19 +112,15 @@ const Profilo = () => {
     if (rispPost.ok) {
       const post = await rispPost.json();
       dispatch(addUser(post));
+      alert("POST CREATO CON SUCCESSO");
     }
   };
 
   return (
-    <div className="mt-5">
+    <div className="justify-content-center containerHome">
       <NavBar />
-      <Container>
-        <Row
-          className="d-flex flex-row"
-          style={{
-            height: "70vh",
-          }}
-        >
+      <Container className="mt-5 ">
+        <Row className="d-flex flex-row">
           <Col>
             <Container className="my-5 d-flex justify-content-start">
               <Row>
@@ -167,20 +163,26 @@ const Profilo = () => {
                 </Col>
               </Row>
             </Container>
-            <Row className=" my-2 " xs={12} sm={12} md={8} lg={3}>
+            <Row className=" my-2 " xs={12} sm={12} md={12} lg={3}>
               <Col>
                 <Card>
                   <Form onSubmit={createPost}>
                     <Form.Group className="mb-1">
-                      <Form.Label>CREA UN NUOVO POST</Form.Label>
-                      <Form.Control type="text" name="testo" id="testo" placeholder="scrivi qui..." />
+                      <Form.Label className="my-2 mx-2">CREA UN NUOVO POST</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="testo"
+                        id="testo"
+                        placeholder="scrivi qui..."
+                        className="w-75 mb-3 mx-2"
+                      />
                     </Form.Group>
                     <Col>
-                      <Form.Group className="mb-3">
+                      <Form.Group className="mb-3 mx-2 w-75">
                         <Form.Control type="file" name="file" onChange={caricaFile} />
                       </Form.Group>
                     </Col>
-                    <Button className="buttonCondividi" type="submit ">
+                    <Button className="buttonCondividi mx-2  " type="submit ">
                       Condividi
                     </Button>
                   </Form>
@@ -194,7 +196,7 @@ const Profilo = () => {
               {post ? (
                 post.map((post) => {
                   return (
-                    <Col key={post.id} xs={12} sm={6} className="my-4 ">
+                    <Col key={post.id} xs={12} md={6} lg={4} className="my-4 ">
                       <Card className="cardPost">
                         {" "}
                         <Row>
@@ -216,17 +218,17 @@ const Profilo = () => {
                                   <CardTitle>{user.nome}</CardTitle>
                                 </Col>
                               </Row>
-                              <CardText>{post.dataPubblicazione}</CardText>
-                              <Card.Text>{post.testo}</Card.Text>
-                              <Row>
-                                <Card.Img
-                                  src={post.foto}
-                                  className="w-100 mx-auto clickable  "
-                                  id="fotoPost"
-                                  alt="Post"
-                                  onClick={openLightbox}
-                                />
-                              </Row>
+
+                              <Card.Text className="my-1">{post.testo}</Card.Text>
+
+                              <Card.Img
+                                src={post.foto}
+                                className="  clickable  "
+                                id="fotoPost"
+                                alt="Post"
+                                onClick={openLightbox}
+                              />
+
                               {lightboxOpen && (
                                 <div className="lightbox-overlay" onClick={closeLightbox}>
                                   <div className="lightbox-content">
@@ -237,9 +239,10 @@ const Profilo = () => {
                             </CardBody>{" "}
                           </Col>{" "}
                         </Row>{" "}
-                        <Button className=" buttonDelete " type="submit" onClick={() => deletePost(post.postId)}>
+                        <CardText className=" mx-3 mt-auto">{post.dataPubblicazione}</CardText>
+                        <Button className=" buttonDelete " type="submit" onClick={() => deletePost(post.id)}>
                           Elimina
-                        </Button>{" "}
+                        </Button>
                       </Card>{" "}
                     </Col>
                   );

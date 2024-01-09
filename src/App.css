@@ -37,7 +37,7 @@
   border: none;
   position: absolute;
   left: 80%;
-  top: 5%;
+  top: 2%;
 }
 .lightbox-overlay {
   position: fixed;
@@ -63,10 +63,6 @@
   object-fit: contain;
 }
 
-#fotoPost {
-  width: 200px;
-  height: 300px;
-}
 .buttonCondividi {
   background-color: rgb(161, 173, 152);
   font-size: small;
@@ -140,6 +136,10 @@
   color: rgb(96, 103, 90);
   border-color: rgb(96, 103, 90);
 }
+:hover.buttonCerca {
+  background-color: rgb(156, 119, 35);
+  border: none;
+}
 
 .cardHome {
   min-width: 300px;
@@ -162,4 +162,43 @@
 }
 .footer {
   background-color: rgb(161, 173, 152);
+}
+.formCheck {
+  background-color: rgb(218, 223, 209);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-inline: auto;
+}
+.formCheckHome {
+  margin-block: 10px;
+}
+.buttonFilter {
+  margin-block: 10px;
+  background-color: rgba(167, 128, 38, 0.712);
+  border: none;
+}
+:hover.buttonFilter {
+  background-color: rgb(156, 119, 35);
+}
+
+.cardPost {
+  height: 380px;
+  width: 300px;
+  background-color: rgb(242, 244, 239);
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contFoto {
+  justify-content: center;
+  height: 200px;
+  min-width: 250px;
+}
+.containerHome {
+  background-color: rgb(250, 248, 242);
+  padding: 30px;
+}
+#fotoPost {
+  height: 200px;
+  object-fit: cover;
 }
