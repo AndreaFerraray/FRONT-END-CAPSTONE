@@ -18,7 +18,7 @@ import NavBar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import MapComponent from "./MapComponent";
 import { useEffect, useState } from "react";
-import { addFilter, addIndirizzo, removeIndirizzo } from "../redux/action";
+import { addFilter, addIndirizzo, removeIndirizzo, resetFilters } from "../redux/action";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -31,26 +31,27 @@ const Home = () => {
   const [post, setPost] = useState("");
   const [open, setOpen] = useState(false);
   const campeggio = useSelector((state) => state.campeggio);
-  console.log(indirizzo);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (indirizzo.trim() === "") {
       console.error("campo di ricerca vuoto");
+      alert("inserisci un luogo dove vorresti andare");
     } else {
       dispatch(addIndirizzo(indirizzo));
       navigate("/campeggiCercati");
+      console.log(indirizzo);
     }
   };
 
   const [filterOptions, setFilterOptions] = useState({
-    piscina: false,
     wifi: false,
     animaliAmmessi: false,
-    market: false,
+    piscina: false,
     animazione: false,
+    market: false,
     ristorante: false,
   });
-  console.log(filterOptions);
 
   const handleCheckboxChange = (option) => {
     setFilterOptions((prevOptions) => ({
@@ -58,9 +59,11 @@ const Home = () => {
       [option]: !prevOptions[option],
     }));
   };
+  useEffect(() => {
+    dispatch(addFilter(filterOptions));
+  }, [filterOptions]);
 
   const handleSearch = () => {
-    dispatch(addFilter(filterOptions));
     navigate("/campeggiCercati");
   };
 

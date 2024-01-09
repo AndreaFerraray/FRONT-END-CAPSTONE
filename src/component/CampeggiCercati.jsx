@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./Navbar";
 import { Button, Card, CardText, Col, Container, Row } from "react-bootstrap";
-import { addFavorite, addFavoriteButton, getCampeggio, removeFavorite, removeFavoriteButton } from "../redux/action";
+import {
+  addFavorite,
+  addFavoriteButton,
+  getCampeggio,
+  removeFavorite,
+  removeFavoriteButton,
+  resetFilters,
+} from "../redux/action";
 import { useNavigate } from "react-router-dom";
 
 const CampeggiCercati = () => {
@@ -15,7 +22,7 @@ const CampeggiCercati = () => {
   const preferiti = useSelector((state) => state.login.user?.campeggioPreferito);
   const isButtonClick = useSelector((state) => state.login.user.campeggioPreferito.map((item) => item.id));
   const filtri = useSelector((state) => state.campeggio.campeggiFiltrati);
-  console.log(filtri);
+
   const queryParams = new URLSearchParams({
     indirizzo: indirizzo,
     piscina: filtri.piscina,
@@ -25,8 +32,9 @@ const CampeggiCercati = () => {
     animazione: filtri.animazione,
     ristorante: filtri.ristorante,
   });
+  console.log(queryParams);
   const campeggiCercati = async (event) => {
-    const risp = await fetch(`http://localhost:3001/campeggi/cerca/${indirizzo}`, {
+    const risp = await fetch(`http://localhost:3001/campeggi/cerca/?${queryParams.toString()}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
@@ -34,12 +42,14 @@ const CampeggiCercati = () => {
     });
 
     const contenuto = await risp.json();
-    console.log(contenuto);
+
     if (risp.ok) {
       setContenuto(contenuto);
+      console.log(contenuto);
     } else {
       console.error("Errore nella risposta del server");
     }
+    dispatch(resetFilters());
   };
 
   const [isFavoriteList, setIsFavoriteList] = useState(() => {

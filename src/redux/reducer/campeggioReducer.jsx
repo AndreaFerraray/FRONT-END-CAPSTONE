@@ -1,8 +1,16 @@
-import { ADD_ADDRESS, ADD_BOOKING, ADD_CAMPEGGIO, ADD_FILTER, REMOVE_ADDRESS } from "../action";
+import { ADD_ADDRESS, ADD_BOOKING, ADD_CAMPEGGIO, ADD_FILTER, REMOVE_ADDRESS, RESET_FILTERS } from "../action";
 
 const initialState = {
   campeggio: null,
   indirizzoCercato: null,
+  campeggiFiltrati: {
+    wifi: false,
+    animaliAmmessi: false,
+    piscina: false,
+    animazione: false,
+    market: false,
+    ristorante: false,
+  },
 };
 
 const campeggioReducer = (state = initialState, action) => {
@@ -34,6 +42,18 @@ const campeggioReducer = (state = initialState, action) => {
       return {
         ...state,
         campeggiFiltrati: action.payload,
+      };
+    case RESET_FILTERS:
+      return {
+        ...state,
+        campeggiFiltrati: {
+          wifi: false,
+          animaliAmmessi: false,
+          piscina: false,
+          animazione: false,
+          market: false,
+          ristorante: false,
+        },
       };
 
     default:

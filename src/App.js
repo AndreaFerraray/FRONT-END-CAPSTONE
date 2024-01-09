@@ -23,6 +23,7 @@ import Preferiti from "./component/Preferiti";
 import Prenotazioni from "./component/Prenotazioni";
 import Campeggio from "./component/Campeggio";
 import CampeggiCercati from "./component/CampeggiCercati";
+import Footer from "./component/Footer";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/campeggio" element={<Campeggio />} />
           <Route path="/campeggiCercati" element={<CampeggiCercati />} />
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
     </>
   );
