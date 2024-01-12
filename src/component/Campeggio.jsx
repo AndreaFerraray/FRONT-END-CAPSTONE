@@ -121,7 +121,7 @@ const Campeggio = () => {
           )}
         </Row>
         <Row>
-          <Col> {campeggio.descrizione}</Col>
+          <Col>Descrizione: {campeggio.descrizione}</Col>
         </Row>{" "}
         <Row className="my-4 mx-auto justify-content-center align-items-center ">
           <Col xs={12} sm={3} md={6} lg={4}>
