@@ -13,9 +13,13 @@ import HomeImage from "../logo22.png";
 const NavBar = () => {
   const dispatch = useDispatch();
   const numeroPreferiti = useSelector((state) =>
-    state.login.user ? state.login.user.campeggioPreferito.length || 0 : 0
+    state.login.user ? (state.login.user.campeggioPreferito ? state.login.user.campeggioPreferito.length : 0) : 0
   );
-  const numeroPrenotazioni = useSelector((state) => (state.login.user ? state.login.user.prenotazioni.length || 0 : 0));
+
+  const numeroPrenotazioni = useSelector((state) =>
+    state.login.user ? (state.login.user.prenotazioni ? state.login.user.prenotazioni.length : 0) : 0
+  );
+
   const user = useSelector((state) => state.login.user);
 
   const [isNavbarVisible, setNavbarVisible] = useState(true);
@@ -27,10 +31,8 @@ const NavBar = () => {
       setNavbarVisible(scrollTop <= 0);
     };
 
-    // Aggiungi l'event listener per lo scroll
     window.addEventListener("scroll", handleScroll);
 
-    // Pulisci l'event listener quando il componente si smonta
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
