@@ -47,7 +47,7 @@ const Prenotazioni = () => {
                         type="submit"
                         onClick={() => clickCampeggio(prenotazione.campeggio.id)}
                       >
-                        <CardImg src={prenotazione.campeggio.foto[0].foto}></CardImg>
+                        <CardImg className="w-100" src={prenotazione.campeggio.foto[0].foto}></CardImg>
                       </Button>
                       <Card.Text className="mt-2">
                         <h5> {prenotazione.campeggio.nome}</h5>

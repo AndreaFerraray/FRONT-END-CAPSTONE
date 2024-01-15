@@ -229,3 +229,7 @@
 .fotoCarosello {
   object-fit: cover;
 }
+
+.fotoCampeggio {
+  height: 200px;
+}

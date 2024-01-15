@@ -11,7 +11,7 @@ const Campeggi = () => {
   const navigate = useNavigate();
   const preferiti = useSelector((state) => state.login.user?.campeggioPreferito);
   const isButtonClick = useSelector((state) => state.login.user.campeggioPreferito.map((item) => item.id));
-  // const [isButtonClick, setIsButtonClick] = useState({});
+
   const dispatch = useDispatch();
 
   const [isFavoriteList, setIsFavoriteList] = useState(() => {
@@ -42,10 +42,8 @@ const Campeggi = () => {
       dispatch(addFavoriteButton());
     }
     updatedFavorites[campeggio] = !isFavorite;
-    // console.log(isFavorite);
   };
-  console.log(isFavoriteList);
-  console.log(contenuto);
+
   const tuttiCampeggi = async () => {
     const risp = await fetch("http://localhost:3001/campeggi", {
       method: "GET",
@@ -78,7 +76,7 @@ const Campeggi = () => {
                       onClick={() => clickCampeggio(elem.id)}
                     >
                       <Card.Img
-                        className="w-100"
+                        className="w-100 fotoCampeggio"
                         variant="top"
                         src={
                           elem.foto.length > 0
