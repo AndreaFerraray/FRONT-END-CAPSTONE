@@ -35,7 +35,7 @@ const loginReducer = (state = initialState, action) => {
 
         isButtonClicked: false,
       };
-    //aggiungi i vari casi di login e come salvare il token per averlo disponibile ovunque e comunque per le richiesta al backend
+
     default:
       return state;
   }
