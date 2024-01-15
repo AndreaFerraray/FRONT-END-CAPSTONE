@@ -228,19 +228,4 @@
 }
 .fotoCarosello {
   object-fit: cover;
-  width: 800px;
-  height: 600px;
-}
-.imgCardCamp {
-  height: 200px;
-}
-.prenotazioneFoto {
-  height: 200px;
-}
-.prenotazioneFotoHome {
-  height: 100px;
-  width: 200px;
-}
-.fotoCampeggioPreferiti {
-  height: 200px;
 }

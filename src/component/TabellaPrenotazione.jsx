@@ -20,7 +20,7 @@ const TabellaPrenotazione = () => {
     setCani(!cani);
   };
 
-  const [sistemazione, setSistemazione] = useState([]);
+  const [sistemazione, setSistemazione] = useState();
   console.log(sistemazione);
   const sistemazioni = async () => {
     const risp = await fetch(`http://localhost:3001/sistemazioni/${campeggioId}`, {
@@ -30,11 +30,10 @@ const TabellaPrenotazione = () => {
         "content-type": "Application/json",
       },
     });
-
+    console.log(campeggioId);
     if (risp.ok) {
       const data = await risp.json();
       setSistemazione(data);
-      console.log(data);
     } else {
       console.error("Errore nella risposta del server");
     }

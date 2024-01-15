@@ -70,7 +70,7 @@ const Campeggi = () => {
           {contenuto ? (
             contenuto.map((elem) => {
               return (
-                <Col sm={6} md={6} lg={3} className="mt-4">
+                <Col sm={6} md={6} lg={4} className="mt-4">
                   <Card>
                     <Button
                       className="position-relative buttonCampeggio "
@@ -78,7 +78,7 @@ const Campeggi = () => {
                       onClick={() => clickCampeggio(elem.id)}
                     >
                       <Card.Img
-                        className="w-100 imgCardCamp"
+                        className="w-100"
                         variant="top"
                         src={
                           elem.foto.length > 0
