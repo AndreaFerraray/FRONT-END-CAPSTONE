@@ -1,4 +1,4 @@
-import { ADD_FAVORITE, ADD_ROLE, ADD_TOKEN, ADD_USER, LOGOUT_USER, REMOVE_FAVORITE } from "../action";
+import { ADD_FAVORITE_BUTTON, ADD_TOKEN, ADD_USER, LOGOUT_USER, REMOVE_FAVORITE_BUTTON } from "../action";
 
 const initialState = {
   token: "",
@@ -23,13 +23,13 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
-    case ADD_FAVORITE:
+    case ADD_FAVORITE_BUTTON:
       return {
         ...state,
 
         isButtonClicked: true,
       };
-    case REMOVE_FAVORITE:
+    case REMOVE_FAVORITE_BUTTON:
       return {
         ...state,
 
