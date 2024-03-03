@@ -3,6 +3,7 @@ import { ADD_TOKEN, addToken } from "../redux/action";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const Register = () => {
   const handlerSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log("Form data:", Object.fromEntries(data));
 
     try {
       // Invia la richiesta di registrazione
@@ -51,6 +51,7 @@ const Register = () => {
           navigate("/auth/login");
         }
       } else {
+        toast.error("problema interno");
         console.error("Errore durante la registrazione ");
       }
     } catch (error) {

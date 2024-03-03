@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Prenotazioni = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.login.token);
-  const prenotazioni = useSelector((state) => state.login.user.prenotazioni);
+  const prenotazioni = useSelector((state) => state.login.user?.prenotazioni);
   const dispatch = useDispatch();
-  console.log(prenotazioni);
 
   const deleteBooking = async (prenotazioneId) => {
     const risp = await fetch(`http://localhost:3001/prenotazioni/deleteOneBooking/me/${prenotazioneId}`, {

@@ -23,7 +23,8 @@ import { addFilter, addIndirizzo, getCampeggio, removeIndirizzo, resetFilters } 
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const prenotazioni = useSelector((state) => state.login.user.prenotazioni);
+  const [prenotazioni, setPrenotazioni] = useState("");
+  // const prenotazioni = useSelector((state) => state.login.user.prenotazioni);
   const numberCount = useSelector((state) => state.count);
   const user = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
